@@ -1,6 +1,9 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
-const config = require("./config.json");
+const Discord = require("discord.js")
+const client = new Discord.Client()
+const config = require("./config.json")
+const fs = require("fs")
+
+let points = JSON.parse(fs.readFileSync("./points.json", "utf8"));
 
 client.on("ready", () => {
     client.user.setGame(`Use !Help for help.`);
@@ -8,17 +11,22 @@ client.on("ready", () => {
 
 client.on("message", async message => {
     if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(2000)
-    if(message.author.bot) return;
+    if(message.author.bot) return message.delete(10000)
 
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    if (message.channel == `391409706477813771`) return message.delete(1000)
+    if (message.channel.id == `391409706477813771`) return message.delete()
+
+    if (!points[message.author.id]) points[message.author.id] = {
+        points: 0
+      };
+    let userData = points[message.author.id];
+    userData.points++;
 
     if(message.content.indexOf(config.prefix) !== 0) return;
 
     if (command === "verify" && message.channel.id == `391409706477813771`) {
-        message.delete()
         message.reply(`Welcome to TLL! We hope you enjoy your stay.`)
         message.member.addRole(message.guild.roles.find("name", "Verified")).catch(console.error);
     }
@@ -44,7 +52,16 @@ client.on("message", async message => {
   
     }
     
-    if(command === "ban") {
+    else if (command === "points") {
+        let member = message.mentions.members.first()
+        if (member) { message.channel.send(`${member.displayName} has ${points[member.id].points} point${[member.id].points == 1 && "" || "s"}.`);
+    }else{
+        message.channel.send(`${message.author.displayName} has ${points[message.author.id].points} point${[message.author.id].points == 1 && "" || "s"}.`);
+    }
+
+    }
+    
+    else if(command === "ban") {
       if(!message.member.roles.some(r=>["Administrator"].includes(r.name)) )
         return message.reply("Sorry, you don't have permissions to use this!");
       
@@ -63,7 +80,10 @@ client.on("message", async message => {
       message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
     }
     
-    if(command === "purge") {
+    else if(command === "purge") {
+        if(!message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) )
+        return message.reply("Sorry, you don't have permissions to use this!");
+
       const deleteCount = parseInt(args[0], 10);
       
       if(!deleteCount || deleteCount < 2 || deleteCount > 100)
@@ -73,6 +93,9 @@ client.on("message", async message => {
       message.channel.bulkDelete(fetched)
         .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
     }
+    fs.writeFile("./points.json", JSON.stringify(points), (err) => {
+        if (err) console.error(err)
+      });
   });
-  
+
   client.login(process.env.BOT_TOKEN);
