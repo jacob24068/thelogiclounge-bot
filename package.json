@@ -1,0 +1,13 @@
+{
+  "name": "tll-bot",
+  "description": "tll-bot",
+  "version": "1.0.0",
+  "main": "tllbot.js",
+  "scripts": {
+    "start": "node tllbot.js"
+  },
+  "dependencies": {
+    "discord.js": "11.1.0",
+    "request": "2.81.0"
+  }
+}
