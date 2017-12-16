@@ -56,7 +56,7 @@ client.on("message", async message => {
         let member = message.mentions.members.first()
         if (member) { message.channel.send(`${member.displayName} has ${points[member.id].points} point${[member.id].points == 1 && "" || "s"}.`);
     }else{
-        message.channel.send(`${message.author.displayName} has ${points[message.author.id].points} point${[message.author.id].points == 1 && "" || "s"}.`);
+        message.channel.send(`${message.member.displayName} has ${points[message.author.id].points} point${[message.author.id].points == 1 && "" || "s"}.`);
     }
 
     }
