@@ -17,9 +17,10 @@ client.on("message", async message => {
 
     if(message.content.indexOf(config.prefix) !== 0) return;
 
-    if (command === "verify" && message.channel == `391409706477813771`) {
+    if (command === "verify" && message.channel.id == `391409706477813771`) {
+        message.delete()
         message.reply(`Welcome to TLL! We hope you enjoy your stay.`)
-        member.addRole(message.guild.roles.find("name", "Verified")).catch(console.error);
+        message.member.addRole(message.guild.roles.find("name", "Verified")).catch(console.error);
     }
     
 
