@@ -72,8 +72,6 @@ client.on("message", async message => {
       console.log(`Saving data`)
     }
 
-    console.log(progress)
-
     if(message.content.indexOf(config.prefix) !== 0) return;
 
     if (command === "verify" && message.channel.id == `391409706477813771`) {
@@ -175,6 +173,8 @@ client.on("message", async message => {
     if(!time) return message.reply("Please indicate a time for the mute!");    
     saveData[member.id] = Number(time) 
     }
+
+    message.delete(5000)
   });
 
   client.login(process.env.BOT_TOKEN);
