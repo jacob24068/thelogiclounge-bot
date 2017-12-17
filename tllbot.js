@@ -1,5 +1,3 @@
-//import { setTimeout } from "timers";
-
 const Discord = require("discord.js")
 const client = new Discord.Client()
 const config = require("./config.json")
@@ -74,12 +72,10 @@ client.on("message", async message => {
       console.log(`Saving data`)
     }
 
-    if (message.channel.id == `391409706477813771` && !command === "verify") return message.delete()
-
     if (command === "verify" && message.channel.id == `391409706477813771`) {
       message.reply(`Welcome to TLL! We hope you enjoy your stay.`)
       message.member.addRole(message.guild.roles.find("name", "Verified")).catch(console.error);
-  }
+  }else if (message.channel.id == `391409706477813771`) return message.delete()
 
     if(message.content.indexOf(config.prefix) !== 0) return;
 
