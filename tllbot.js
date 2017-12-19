@@ -206,6 +206,8 @@ client.on("message", async message => {
           arr.push(newT[prop]);
       }
       const a = arr.length - 1
+      console.log(arr[a])
+      console.log(message.guild.members.get("id", arr[a]))
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
