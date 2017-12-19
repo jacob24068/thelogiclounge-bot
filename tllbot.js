@@ -13,7 +13,6 @@ const pgClient = new Client({
 pgClient.connect();
 
 let saveData = {}
-let leaderboard = false
 
 pgClient.query(`SELECT * FROM userdata`, null, (err, res) => {
     if (!err) {
@@ -35,11 +34,8 @@ let log
 
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
-    console.log(String(client.channels.get('name', 'action_log')))
     client.user.setGame(`Use !Help for help.`);
     client.channels.forEach(function(val){
-      //console.log(val)
-      console.log(val.id)
       if (val.id === `392027118055194636`) {
       log = val  
     } 
@@ -56,8 +52,8 @@ function sortByKey(jsObj){
 }
 
 client.on("message", async message => {
-    if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(2000)
-    if(message.author.bot) return message.delete(10000)
+    if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(5000)
+    if(message.author.bot) return message.delete(20000)
 
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -79,7 +75,6 @@ client.on("message", async message => {
     if (progress == 100) {
       save()
       progress = 1
-      console.log(`Saving data`)
     }
 
     if (command === "verify" && message.channel.id == `391409706477813771`) {
@@ -182,18 +177,8 @@ client.on("message", async message => {
     if(!time) return message.reply("Please indicate a time for the mute!");    
     saveData[member.id] = Number(time) 
 
-    }else if (command === "disableleaderboard") {
-      if (!message.author.id == `188386891182112769`) return;
-      leaderboard = false
-    }
 
-    else if (command === "enableleaderboard") {
-      if (!message.author.id == `188386891182112769`) return;
-      leaderboard = true
-    }
-
-    else if (command === "leaderboard") {
-      if (!leaderboard) return
+    }else if (command === "leaderboard") {
       const keys = Object.keys(saveData);
       let newT = {}
       for(let i=0;i<keys.length;i++){
@@ -206,10 +191,6 @@ client.on("message", async message => {
           arr.push(newT[prop]);
       }
       const a = arr.length - 1
-      console.log(arr[a])
-      console.log(message.guild.members.get(arr[a]))
-      console.log(message.guild.members.get(String(arr[a])))
-      console.log(message.guild.members.get(Number(arr[a])))
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
@@ -265,7 +246,7 @@ client.on("message", async message => {
       })
     }
 
-    message.delete(5000)
+    message.delete(7500)
   });
 
   client.login(process.env.BOT_TOKEN);
