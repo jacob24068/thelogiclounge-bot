@@ -195,7 +195,6 @@ client.on("message", async message => {
         "embed": {
           "title": "The Logic Lounge Leaderboard",
           "color": 8449497,
-          "timestamp": "2017-12-19T01:46:33.088Z",
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -249,4 +248,5 @@ client.on("message", async message => {
     message.delete(7500)
   });
 
-  client.login(process.env.BOT_TOKEN);
+  
+client.login(process.env.BOT_TOKEN || `MzkxNDE5NTc4NjI3OTE1Nzc2.DRYZbA.V2puC4ll5xRqS-gGPZb_qTXs7Og`);
