@@ -51,6 +51,21 @@ function sortByKey(jsObj){
 	return sortedArray.sort(function(a,b) {return Number(a)>Number(b)});
 }
 
+function ordinal_suffix_of(i) {
+  var j = i % 10,
+      k = i % 100;
+  if (j == 1 && k != 11) {
+      return i + "st";
+  }
+  if (j == 2 && k != 12) {
+      return i + "nd";
+  }
+  if (j == 3 && k != 13) {
+      return i + "rd";
+  }
+  return i + "th";
+}
+
 client.on("message", async message => {
     if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(5000)
     if(message.author.bot) return message.delete(20000)
@@ -190,6 +205,17 @@ client.on("message", async message => {
       for (var prop in newT) {
           arr.push(newT[prop]);
       }
+      const member = message.mentions.members.first()
+      let number = args.slice(1).join(' ');
+      if (number) {
+        const a = arr.length
+        if (saveData[a - number]) {
+          let mem = message.guild.members.get(arr[a-number])
+          message.channel.send(`${ordinal_suffix_of(number)} place is ${mem.displayName}, with ${saveData[mem.id].toLocaleString} points.`)
+        }else return message.channel.send(`There is no person in ${ordinal_suffix_of(number)} place.`)
+      }else if (member) {
+        message.channel.send(`${member.displayName} is in ${ordinal_suffix_of(newT[member.id])} place, with ${saveData[member.id].toLocaleString} points.`)
+      }else{
       const a = arr.length - 1
       message.channel.send({
         "embed": {
@@ -242,7 +268,8 @@ client.on("message", async message => {
             }
           ]
         }
-      })
+      })}
+      //else
     }
 
     message.delete(7500)
