@@ -208,7 +208,7 @@ client.on("message", async message => {
       const member = message.mentions.members.first()
       let number = args.slice(0).join(' ');
       if (member) {
-        message.channel.send(`${member.displayName} is in ${ordinal_suffix_of(arr[member.id])} place, with ${saveData[member.id].toLocaleString()} points.`)
+        message.channel.send(`${member.displayName} is in ${ordinal_suffix_of(newT[member.id])} place, with ${saveData[member.id].toLocaleString()} points.`)
       }else if (number) {
         const a = arr.length
         if (arr[a - number]) {
@@ -227,49 +227,49 @@ client.on("message", async message => {
           },
           "fields": [
             {
-              "name": "1 - " + message.guild.members.get(arr[a]).displayName,
+              "name": "1 - " + String(message.guild.members.get(arr[a]).displayName),
               "value": saveData[arr[a]].toLocaleString() + " points (Ahead "+(saveData[arr[a]] - saveData[arr[a-1]]).toLocaleString()+" points)"
             },
             {
-              "name": "2 - " + message.guild.members.get(arr[a - 1]).displayName,
+              "name": "2 - " + String(message.guild.members.get(arr[a-1]).displayName),
               "value": saveData[arr[a - 1]].toLocaleString() + " points (Ahead "+(saveData[arr[a - 1]] - saveData[arr[a - 2]]).toLocaleString()+" points)"
             },
             {
-              "name": "3 - " + message.guild.members.get(arr[a-2]).displayName,
+              "name": "3 - " + String(message.guild.members.get(arr[a-2]).displayName),
               "value": saveData[arr[a - 2]].toLocaleString() + " points (Ahead "+(saveData[arr[a - 2]] - saveData[arr[a - 3]]).toLocaleString()+" points)"
             },
             {
-              "name": "4 - " + message.guild.members.get(arr[a-3]).displayName,
+              "name": "4 - " + String(message.guild.members.get(arr[a-3]).displayName),
               "value": saveData[arr[a - 3]].toLocaleString() + " points (Ahead "+(saveData[arr[a - 3]] - saveData[arr[a - 4]]).toLocaleString()+" points)"
             },
             {
-              "name": "5 - " + message.guild.members.get(arr[a-4]).displayName,
+              "name": "5 - " + String(message.guild.members.get(arr[a-4]).displayName),
               "value": saveData[arr[a - 4]].toLocaleString() + " points (Ahead "+(saveData[arr[a - 4]] - saveData[arr[a - 5]]).toLocaleString()+" points)"
             },
             {
-              "name": "6 - " + message.guild.members.get(arr[a - 5]).displayName,
+              "name": "6 - " + String(message.guild.members.get(arr[a-5]).displayName),
               "value": saveData[arr[a - 5]].toLocaleString() + " points (Ahead "+(saveData[arr[a - 5]] - saveData[arr[a - 6]]).toLocaleString()+" points)"
             },
             {
-              "name": "7 - " + message.guild.members.get(arr[a - 6]).displayName,
+              "name": "7 - " + String(message.guild.members.get(arr[a-6]).displayName),
               "value": saveData[arr[a - 6]].toLocaleString() + " points (Ahead "+(saveData[arr[a - 6]] - saveData[arr[a - 7]]).toLocaleString()+" points)"
             },
             {
-              "name": "8 - " + message.guild.members.get(arr[a-7]).displayName,
+              "name": "8 - " + String(message.guild.members.get(arr[a-7]).displayName),
               "value": saveData[arr[a - 7]].toLocaleString() + " points (Ahead "+(saveData[arr[a - 7]] - saveData[arr[a - 8]]).toLocaleString()+" points)"
             },
             {
-              "name": "9 - " + message.guild.members.get(arr[a-8]).displayName,
+              "name": "9 - " + String(message.guild.members.get(arr[a-8]).displayName),
               "value": saveData[arr[a - 8]].toLocaleString() + " points (Ahead "+(saveData[arr[a - 8]] - saveData[arr[a - 9]]).toLocaleString()+" points)"
             },
             {
-              "name": "10 - " + message.guild.members.get(arr[a-9]).displayName,
+              "name": "10 - " + String(message.guild.members.get(arr[a-9]).displayName),
               "value": saveData[arr[a - 9]].toLocaleString() + " points (Ahead "+(saveData[arr[a - 9]] - saveData[arr[a - 10]]).toLocaleString()+" points)"
             }
           ]
         }
       })}
-      //elsea
+      //else
     }
 
     message.delete(7500)
