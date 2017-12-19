@@ -217,6 +217,12 @@ client.on("message", async message => {
         }else return message.channel.send(`There is no person in ${ordinal_suffix_of(number)} place.`)
       }else{
       const a = arr.length - 1
+      for(var i = 0; i <= 9; i++) {
+      if (!message.guild.members.get(arr[a-i])) {
+        console.log(`y wulfexd`)
+       console.log(arr[a-i])
+      }
+    }
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
