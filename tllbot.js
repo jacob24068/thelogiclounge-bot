@@ -219,8 +219,7 @@ client.on("message", async message => {
       const a = arr.length - 1
       for(var i = 0; i <= 9; i++) {
       if (!message.guild.members.get(arr[a-i])) {
-        console.log(`y wulfexd`)
-       saveData[arr[a-i]] = nil
+       saveData[arr[a-i]] = null
       }
     }
       message.channel.send({
