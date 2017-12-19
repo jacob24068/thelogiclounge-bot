@@ -6,13 +6,14 @@ const ms = require('ms')
 
 
 const pgClient = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://pfqcrzxlhldklx:6cd2d3d9647b32915abf1c3f98d834413d2ceb1c4e3322cdb58059088b87c5f0@ec2-23-23-245-89.compute-1.amazonaws.com:5432/d22vi9ogr8b92k',
+  connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
 
 pgClient.connect();
 
 let saveData = {}
+let leaderboard = false
 
 pgClient.query(`SELECT * FROM userdata`, null, (err, res) => {
     if (!err) {
@@ -44,6 +45,15 @@ client.on("ready", () => {
     } 
     })
   });
+
+function sortByKey(jsObj){
+  	var sortedArray = [];
+  	for(var i in jsObj)
+  	{
+		sortedArray.push([i, jsObj[i]]);
+	}
+	return sortedArray.sort(function(a,b) {return Number(a)>Number(b)});
+}
 
 client.on("message", async message => {
     if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(2000)
@@ -171,6 +181,84 @@ client.on("message", async message => {
     let time = args.slice(1).join(' ');
     if(!time) return message.reply("Please indicate a time for the mute!");    
     saveData[member.id] = Number(time) 
+
+    }else if (command === "disableleaderboard") {
+      if (!message.author.id == `188386891182112769`) return;
+      leaderboard = false
+    }
+
+    else if (command === "enableleaderboard") {
+      if (!message.author.id == `188386891182112769`) return;
+      leaderboard = true
+    }
+
+    else if (command === "leaderboard") {
+      if (!leaderboard) return
+      const keys = Object.keys(saveData);
+      let newT = {}
+      for(let i=0;i<keys.length;i++){
+        let key = keys[i];
+        newT[saveData[key]] = key
+      }
+      const sorted = sortByKey(newT)
+      var arr = [];
+      for (var prop in newT) {
+          arr.push(newT[prop]);
+      }
+      const a = arr.length - 1
+      message.channel.send({
+        "embed": {
+          "title": "The Logic Lounge Leaderboard",
+          "color": 8449497,
+          "timestamp": "2017-12-19T01:46:33.088Z",
+          "author": {
+            "name": "The Logic Lounge Bot",
+            "icon_url": "https://i.imgur.com/R7TRyNo.png"
+          },
+          "fields": [
+            {
+              "name": "1 - " + message.server.members.get("id", arr[a]).displayName,
+              "value": saveData[arr[a]].toLocaleString() + " points"
+            },
+            {
+              "name": "2 - " + message.server.members.get("id", arr[a - 1]).displayName,
+              "value": saveData[arr[a - 1]].toLocaleString() + " points"
+            },
+            {
+              "name": "3 - " + message.server.members.get("id", arr[a-2]).displayName,
+              "value": saveData[arr[a-2]].toLocaleString() + " points"
+            },
+            {
+              "name": "4 - " + message.server.members.get("id", arr[a-3]).displayName,
+              "value": saveData[arr[a-3]].toLocaleString() + " points"
+            },
+            {
+              "name": "5 - " + message.server.members.get("id", arr[a-4]).displayName,
+              "value": saveData[arr[a-4]].toLocaleString() + " points"
+            },
+            {
+              "name": "6 - " + message.server.members.get("id", arr[a - 5]).displayName,
+              "value": saveData[arr[a - 5]].toLocaleString() + " points"
+            },
+            {
+              "name": "7 - " + message.server.members.get("id", arr[a - 6]).displayName,
+              "value": saveData[arr[a - 6]].toLocaleString() + " points"
+            },
+            {
+              "name": "8 - " + message.server.members.get("id", arr[a-7]).displayName,
+              "value": saveData[arr[a-7]].toLocaleString() + " points"
+            },
+            {
+              "name": "9 - " + message.server.members.get("id", arr[a-8]).displayName,
+              "value": saveData[arr[a-8]].toLocaleString() + " points"
+            },
+            {
+              "name": "10 - " + message.server.members.get("id", arr[a-9]).displayName,
+              "value": saveData[arr[a-9]].toLocaleString() + " points"
+            }
+          ]
+        }
+      })
     }
 
     message.delete(5000)
