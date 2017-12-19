@@ -208,7 +208,7 @@ client.on("message", async message => {
       const member = message.mentions.members.first()
       let number = args.slice(0).join(' ');
       if (member) {
-        message.channel.send(`In ${ordinal_suffix_of(newT[member.id])} place, ${member.displayName}, with ${saveData[member.id].toLocaleString()} points.`)
+        message.channel.send(`${member.displayName} is in ${ordinal_suffix_of(arr[member.id])} place, with ${saveData[member.id].toLocaleString()} points.`)
       }else if (number) {
         const a = arr.length
         if (arr[a - number]) {
