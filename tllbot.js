@@ -269,7 +269,7 @@ client.on("message", async message => {
           ]
         }
       })}
-      //else
+      //elsea
     }
 
     message.delete(7500)
