@@ -207,9 +207,9 @@ client.on("message", async message => {
       }
       const a = arr.length - 1
       console.log(arr[a])
-      console.log(message.guild.members.get("id", arr[a]))
-      console.log(message.guild.members.get("id", String(arr[a])))
-      console.log(message.guild.members.get("id", Number(arr[a])))
+      console.log(message.guild.members.get(arr[a]))
+      console.log(message.guild.members.get(String(arr[a])))
+      console.log(message.guild.members.get(Number(arr[a])))
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
@@ -221,43 +221,43 @@ client.on("message", async message => {
           },
           "fields": [
             {
-              "name": "1 - " + message.guild.members.get("id", arr[a]).displayName,
+              "name": "1 - " + message.guild.members.get(arr[a]).displayName,
               "value": saveData[arr[a]].toLocaleString() + " points"
             },
             {
-              "name": "2 - " + message.guild.members.get("id", arr[a - 1]).displayName,
+              "name": "2 - " + message.guild.members.get(arr[a - 1]).displayName,
               "value": saveData[arr[a - 1]].toLocaleString() + " points"
             },
             {
-              "name": "3 - " + message.guild.members.get("id", arr[a-2]).displayName,
+              "name": "3 - " + message.guild.members.get(arr[a-2]).displayName,
               "value": saveData[arr[a-2]].toLocaleString() + " points"
             },
             {
-              "name": "4 - " + message.guild.members.get("id", arr[a-3]).displayName,
+              "name": "4 - " + message.guild.members.get(arr[a-3]).displayName,
               "value": saveData[arr[a-3]].toLocaleString() + " points"
             },
             {
-              "name": "5 - " + message.guild.members.get("id", arr[a-4]).displayName,
+              "name": "5 - " + message.guild.members.get(arr[a-4]).displayName,
               "value": saveData[arr[a-4]].toLocaleString() + " points"
             },
             {
-              "name": "6 - " + message.guild.members.get("id", arr[a - 5]).displayName,
+              "name": "6 - " + message.guild.members.get(arr[a - 5]).displayName,
               "value": saveData[arr[a - 5]].toLocaleString() + " points"
             },
             {
-              "name": "7 - " + message.guild.members.get("id", arr[a - 6]).displayName,
+              "name": "7 - " + message.guild.members.get(arr[a - 6]).displayName,
               "value": saveData[arr[a - 6]].toLocaleString() + " points"
             },
             {
-              "name": "8 - " + message.guild.members.get("id", arr[a-7]).displayName,
+              "name": "8 - " + message.guild.members.get(arr[a-7]).displayName,
               "value": saveData[arr[a-7]].toLocaleString() + " points"
             },
             {
-              "name": "9 - " + message.guild.members.get("id", arr[a-8]).displayName,
+              "name": "9 - " + message.guild.members.get(arr[a-8]).displayName,
               "value": saveData[arr[a-8]].toLocaleString() + " points"
             },
             {
-              "name": "10 - " + message.guild.members.get("id", arr[a-9]).displayName,
+              "name": "10 - " + message.guild.members.get(arr[a-9]).displayName,
               "value": saveData[arr[a-9]].toLocaleString() + " points"
             }
           ]
