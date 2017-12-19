@@ -35,8 +35,11 @@ let log
 
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
+    console.log(String(client.channels.get('name', 'action_log')))
     client.user.setGame(`Use !Help for help.`);
     client.channels.forEach(function(val){
+      //console.log(val)
+      console.log(val.id)
       if (val.id === `392027118055194636`) {
       log = val  
     } 
@@ -53,8 +56,8 @@ function sortByKey(jsObj){
 }
 
 client.on("message", async message => {
-    if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(5000)
-    if(message.author.bot) return message.delete(20000)
+    if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(2000)
+    if(message.author.bot) return message.delete(10000)
 
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -76,6 +79,7 @@ client.on("message", async message => {
     if (progress == 100) {
       save()
       progress = 1
+      console.log(`Saving data`)
     }
 
     if (command === "verify" && message.channel.id == `391409706477813771`) {
@@ -202,6 +206,10 @@ client.on("message", async message => {
           arr.push(newT[prop]);
       }
       const a = arr.length - 1
+      console.log(arr[a])
+      console.log(message.guild.members.get(arr[a]))
+      console.log(message.guild.members.get(String(arr[a])))
+      console.log(message.guild.members.get(Number(arr[a])))
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
@@ -257,7 +265,7 @@ client.on("message", async message => {
       })
     }
 
-    message.delete(7500)
+    message.delete(5000)
   });
 
   client.login(process.env.BOT_TOKEN);
