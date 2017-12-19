@@ -209,14 +209,13 @@ client.on("message", async message => {
       let number = args.slice(0).join(' ');
       if (member) {
         message.channel.send(`${member.displayName} is in ${ordinal_suffix_of(newT[member.id])} place, with ${saveData[member.id].toLocaleString()} points.`)
-      }
-      else if (number) {
+      }else if (number) {
         const a = arr.length
         if (arr[a - number]) {
           let mem = message.guild.members.get(arr[a-number])
           message.channel.send(`${ordinal_suffix_of(number)} place is ${mem.displayName}, with ${saveData[mem.id].toLocaleString} points.`)
         }else return message.channel.send(`There is no person in ${ordinal_suffix_of(number)} place.`)
-      }
+      }else{
       const a = arr.length - 1
       message.channel.send({
         "embed": {
