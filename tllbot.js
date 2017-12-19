@@ -220,7 +220,7 @@ client.on("message", async message => {
       for(var i = 0; i <= 9; i++) {
       if (!message.guild.members.get(arr[a-i])) {
         console.log(`y wulfexd`)
-       console.log(arr[a-i])
+       saveData[arr[a-i]] = nil
       }
     }
       message.channel.send({
