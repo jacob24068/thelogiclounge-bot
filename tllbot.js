@@ -220,6 +220,7 @@ client.on("message", async message => {
       for(var i = 0; i <= 9; i++) {
       if (!message.guild.members.get(arr[a-i])) {
        saveData[arr[a-i]] = null
+       console.log(saveData[arr[a-i]])
       }
     }
       message.channel.send({
