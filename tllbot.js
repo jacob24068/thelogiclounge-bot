@@ -169,11 +169,12 @@ client.on("message", async message => {
     }
     
     else if(command === "purge") {
+      return
         if(!message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) )
         return message.reply("Sorry, you don't have permissions to use this!");
 
       const deleteCount = parseInt(args[0], 10);
- 
+      
       console.log(deleteCount)
       if(!deleteCount || deleteCount < 2 || deleteCount > 100)
         return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
