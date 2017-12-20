@@ -205,6 +205,13 @@ client.on("message", async message => {
       for (var prop in newT) {
           arr.push(newT[prop]);
       }
+      const a = arr.length - 1
+      for(var i = 0; i <= 9; i++) {
+        console.log(arr[a-i])
+      if (!message.guild.members.get(arr[a-i])) {
+       delete saveData[arr[a-i]]
+        }
+      }
       const member = message.mentions.members.first()
       let number = args.slice(0).join(' ');
       if (member) {
@@ -216,14 +223,6 @@ client.on("message", async message => {
           message.channel.send(` ${mem.displayName} is in ${ordinal_suffix_of(number)} place is, with ${saveData[mem.id].toLocaleString()} points.`)
         }else return message.channel.send(`There is no person in ${ordinal_suffix_of(number)} place.`)
       }else{
-      const a = arr.length - 1
-      for(var i = 0; i <= 9; i++) {
-        console.log(arr[a-i])
-      if (!message.guild.members.get(arr[a-i])) {
-       saveData[arr[a-i]] = null
-       console.log(saveData[arr[a-i]])
-        }
-      }
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
