@@ -35,7 +35,7 @@ let log
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
     client.user.setPresence({ game: { name: '!help', type: 0 } });
-    log = client.channels.get(`392027118055194636`)
+    //log = client.channels.get(`392027118055194636`)
   });
 
 function sortByKey(jsObj){
@@ -116,7 +116,7 @@ client.on("message", async message => {
       await member.kick(reason)
         .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
       message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
-       log.channel.send(`${message.author} has kicked ${member} for ${reason}`)
+      // log.channel.send(`${message.author} has kicked ${member} for ${reason}`)
     }
 
     else if (command === "mute") {
@@ -130,7 +130,7 @@ client.on("message", async message => {
       if(!time)
         return message.reply("Please indicate a time for the mute!");
       member.addRole(muteRole.id)
-      log.channel.send(`${message.author} has muted ${member} for ${ms(ms(time), {long:true})}`)
+     // log.channel.send(`${message.author} has muted ${member} for ${ms(ms(time), {long:true})}`)
       message.channel.send(`${member}, you have been muted for ${ms(ms(time), {long:true})}`)
       setTimeout(function() {
         member.removeRole(muteRole.id)
@@ -173,7 +173,7 @@ client.on("message", async message => {
       let reason = args.slice(1).join(' ');
       if(!reason)
         return message.reply("Please indicate a reason for the ban!");
-     log.channel.send(`${message.author} has banned ${member} for ${reason}`)
+    // log.channel.send(`${message.author} has banned ${member} for ${reason}`)
       await member.ban(reason)
         .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
       message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
@@ -190,7 +190,7 @@ client.on("message", async message => {
       if(!deleteCount || deleteCount < 2 || deleteCount > 100)
         return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
       const fetched = await message.channel.fetchMessages({count: deleteCount});
-      log.channel.send(`${message.author} has purged ${deleteCount} messages in ${message.channel.name}`)
+     // log.channel.send(`${message.author} has purged ${deleteCount} messages in ${message.channel.name}`)
       message.channel.bulkDelete(fetched)
         .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
     }else if(command === "forcesave") {
