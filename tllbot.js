@@ -244,7 +244,7 @@ client.on("message", async message => {
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
-          "color": 8449497,
+          "color": 0xe19de1,
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
