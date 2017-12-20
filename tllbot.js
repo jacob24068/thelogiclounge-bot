@@ -320,10 +320,10 @@ client.on("message", async message => {
             {
               "name": "Your available commands (Standard User)",
               "value": `!leaderboard - Returns top 10 highest posters in chat.
-                        !leaderboard <number> - Returns the user who is in the given place in chat.
-                        !leaderboard <mention> - Returns the mentioned user's place, and amount of points.
-                        !points - Returns your points
-                        !points <mention> - Returns given users points.`
+!leaderboard <number> - Returns the user who is in the given place in chat.
+!leaderboard <mention> - Returns the mentioned user's place, and amount of points.
+!points - Returns your points
+!points <mention> - Returns given users points.`
             }
           ]
         }
