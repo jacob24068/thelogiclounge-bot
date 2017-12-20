@@ -214,19 +214,17 @@ client.on("message", async message => {
       }
       const member = message.mentions.members.first()
       let number = args.slice(0).join(' ');
-      if (member) {/*
+      if (member) {
         for (var i = 0, row; row = arr[i]; i++) {
           if (row == member.id) {
-            message.channel.send(`${member.displayName} is in ${ordinal_suffix_of(newT[member.id])} place, with ${saveData[member.id].toLocaleString()} points.`)
+            message.channel.send(`${member.displayName} is in ${ordinal_suffix_of(arr.length-i)} place, with ${saveData[member.id].toLocaleString()} points.`)
             break
-          }*/
-          console.log(member)
-          console.log(arr)
-        
+          }
+        }
       }else if (number) {
-        const a = arr.length
-        if (arr[a - number]) {
-          let mem = message.guild.members.get(arr[a-number])
+        let b = arr.length
+        if (arr[b - number]) {
+          let mem = message.guild.members.get(arr[b-number])
           message.channel.send(` ${mem.displayName} is in ${ordinal_suffix_of(number)} place is, with ${saveData[mem.id].toLocaleString()} points.`)
         }else return message.channel.send(`There is no person in ${ordinal_suffix_of(number)} place.`)
       }else{
