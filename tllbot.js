@@ -281,7 +281,7 @@ client.on("message", async message => {
       })}
     }
     else if (command === "help") {
-      if(!message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) ) { message.author.send({
+      if(message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) ) { message.author.send({
         "embed": {
           "title": "The Logic Lounge Help",
           "color": 8449497,
