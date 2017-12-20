@@ -207,7 +207,6 @@ client.on("message", async message => {
       }
       const a = arr.length - 1
       for(var i = 0; i <= 9; i++) {
-        console.log(arr[a-i])
       if (!message.guild.members.get(arr[a-i])) {
        delete saveData[arr[a-i]]
         }
@@ -280,9 +279,58 @@ client.on("message", async message => {
           ]
         }
       })}
-      //else
     }
+    else if (command === "help") {
+      if(!message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) ) { message.author.send({
+        "embed": {
+          "title": "The Logic Lounge Help",
+          "color": 8449497,
+          "author": {
+            "name": "The Logic Lounge Bot",
+            "icon_url": "https://i.imgur.com/R7TRyNo.png"
+          },
+          "fields": [
+            {
+              "name": "Your available commands (Moderator+)",
+              "value": `!mute <user> <time> - Mutes given user for given time (User will not be able to talk in voice channel, or text channel, although will be able to listen/read.
+                        !unmute <user> - Unmutes given user.
+                        !kick <user> <reason> - Kicks user for given reason (Please use this, over actually clicking a user, for the reason statement.)
+                        !ban <user> <reason> - Bans user for given reason (Please use this, over actually clicking a user, for the reason statement.)
+                        !purge <number: 0-100> - Purges given amount of messages from chat.`
+            },
+            {
+              "name": "Your available commands (Standard User)",
+              "value": `!leaderboard - Returns top 10 highest posters in chat.
+                        !leaderboard <number> - Returns the user who is in the given place in chat.
+                        !leaderboard <mention> - Returns the mentioned user's place, and amount of points.
+                        !points - Returns your points
+                        !points <mention> - Returns given users points.`
+            }
+          ]
+        }
+      })}else{message.author.send({
+        "embed": {
+          "title": "The Logic Lounge Help",
+          "color": 8449497,
+          "author": {
+            "name": "The Logic Lounge Bot",
+            "icon_url": "https://i.imgur.com/R7TRyNo.png"
+          },
+          "fields": [
+            {
+              "name": "Your available commands (Standard User)",
+              "value": `!leaderboard - Returns top 10 highest posters in chat.
+                        !leaderboard <number> - Returns the user who is in the given place in chat.
+                        !leaderboard <mention> - Returns the mentioned user's place, and amount of points.
+                        !points - Returns your points
+                        !points <mention> - Returns given users points.`
+            }
+          ]
+        }
 
+      })}
+      message.reply(`I have DM'ed you commands.`)
+    }
     message.delete(7500)
   });
 
