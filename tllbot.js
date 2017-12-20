@@ -222,7 +222,7 @@ client.on("message", async message => {
           }*/
           console.log(member)
           console.log(arr)
-        }
+        
       }else if (number) {
         const a = arr.length
         if (arr[a - number]) {
