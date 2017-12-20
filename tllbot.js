@@ -293,18 +293,18 @@ client.on("message", async message => {
             {
               "name": "Your available commands (Moderator+)",
               "value": `!mute <user> <time> - Mutes given user for given time (User will not be able to talk in voice channel, or text channel, although will be able to listen/read.
-                        !unmute <user> - Unmutes given user.
-                        !kick <user> <reason> - Kicks user for given reason (Please use this, over actually clicking a user, for the reason statement.)
-                        !ban <user> <reason> - Bans user for given reason (Please use this, over actually clicking a user, for the reason statement.)
-                        !purge <number: 0-100> - Purges given amount of messages from chat.`
+!unmute <user> - Unmutes given user.
+!kick <user> <reason> - Kicks user for given reason (Please use this, over actually clicking a user, for the reason statement.)
+!ban <user> <reason> - Bans user for given reason (Please use this, over actually clicking a user, for the reason statement.)
+!purge <number: 0-100> - Purges given amount of messages from chat.`
             },
             {
               "name": "Your available commands (Standard User)",
               "value": `!leaderboard - Returns top 10 highest posters in chat.
-                        !leaderboard <number> - Returns the user who is in the given place in chat.
-                        !leaderboard <mention> - Returns the mentioned user's place, and amount of points.
-                        !points - Returns your points
-                        !points <mention> - Returns given users points.`
+!leaderboard <number> - Returns the user who is in the given place in chat.
+!leaderboard <mention> - Returns the mentioned user's place, and amount of points.
+!points - Returns your points
+!points <mention> - Returns given users points.`
             }
           ]
         }
