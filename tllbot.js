@@ -67,6 +67,7 @@ function ordinal_suffix_of(i) {
 }
 
 client.on("message", async message => {
+    if (!message.guild) return
     if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(5000)
     if(message.author.bot) return message.delete(20000)
 
