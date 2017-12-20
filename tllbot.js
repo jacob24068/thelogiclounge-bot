@@ -218,11 +218,12 @@ client.on("message", async message => {
       }else{
       const a = arr.length - 1
       for(var i = 0; i <= 9; i++) {
+        console.log(arr[a-i])
       if (!message.guild.members.get(arr[a-i])) {
        saveData[arr[a-i]] = null
        console.log(saveData[arr[a-i]])
+        }
       }
-    }
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
@@ -282,4 +283,4 @@ client.on("message", async message => {
   });
 
   
-client.login(process.env.BOT_TOKEN || `MzkxNDE5NTc4NjI3OTE1Nzc2.DRYZbA.V2puC4ll5xRqS-gGPZb_qTXs7Og`);
+client.login(process.env.BOT_TOKEN);
