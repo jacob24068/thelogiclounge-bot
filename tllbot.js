@@ -34,7 +34,7 @@ let log
 
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
-    client.user.setGame(`Use !Help for help.`);
+    client.user.setPresence({ game: { name: '!help', type: 0 } });
     client.channels.forEach(function(val){
       if (val.id === `392027118055194636`) {
       log = val  
