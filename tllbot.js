@@ -214,8 +214,15 @@ client.on("message", async message => {
       }
       const member = message.mentions.members.first()
       let number = args.slice(0).join(' ');
-      if (member) {
-        message.channel.send(`${member.displayName} is in ${ordinal_suffix_of(newT[member.id])} place, with ${saveData[member.id].toLocaleString()} points.`)
+      if (member) {/*
+        for (var i = 0, row; row = arr[i]; i++) {
+          if (row == member.id) {
+            message.channel.send(`${member.displayName} is in ${ordinal_suffix_of(newT[member.id])} place, with ${saveData[member.id].toLocaleString()} points.`)
+            break
+          }*/
+          console.log(member)
+          console.log(arr)
+        }
       }else if (number) {
         const a = arr.length
         if (arr[a - number]) {
