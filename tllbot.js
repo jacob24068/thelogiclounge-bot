@@ -35,11 +35,7 @@ let log
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
     client.user.setPresence({ game: { name: '!help', type: 0 } });
-    client.channels.forEach(function(val){
-      if (val.id === `392027118055194636`) {
-      log = val  
-    } 
-    })
+    log = client.channels.get(`392027118055194636`)
   });
 
 function sortByKey(jsObj){
@@ -68,6 +64,7 @@ function ordinal_suffix_of(i) {
 
 client.on("message", async message => {
     if (!message.guild) return
+    if (message.channel.id == `392027118055194636`) return
     if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(5000)
     if(message.author.bot) return message.delete(20000)
 
@@ -119,7 +116,7 @@ client.on("message", async message => {
       await member.kick(reason)
         .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
       message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
-     //  log.channel.send(`${message.author} has kicked ${member} for ${reason}`)
+       log.channel.send(`${message.author} has kicked ${member} for ${reason}`)
     }
 
     else if (command === "mute") {
@@ -133,11 +130,25 @@ client.on("message", async message => {
       if(!time)
         return message.reply("Please indicate a time for the mute!");
       member.addRole(muteRole.id)
+      log.channel.send(`${message.author} has muted ${member} for ${ms(ms(time), {long:true})}`)
       message.channel.send(`${member}, you have been muted for ${ms(ms(time), {long:true})}`)
       setTimeout(function() {
         member.removeRole(muteRole.id)
         member.send(`You have been unmuted from The Logic Lounge.`)
       }, ms(time))
+
+      
+    }
+
+    else if (command === "unmute") {
+      if(!message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) )
+        return message.reply("Sorry, you don't have permissions to use this!");
+      let muteRole = message.guild.roles.find('name', 'Muted')
+      let member = message.mentions.members.first()
+      if(!member)
+      return message.reply("Please mention a valid member of this server");
+      
+      member.removeRole(muteRole.id)
 
       
     }
@@ -162,7 +173,7 @@ client.on("message", async message => {
       let reason = args.slice(1).join(' ');
       if(!reason)
         return message.reply("Please indicate a reason for the ban!");
-      
+     log.channel.send(`${message.author} has banned ${member} for ${reason}`)
       await member.ban(reason)
         .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
       message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
@@ -179,6 +190,7 @@ client.on("message", async message => {
       if(!deleteCount || deleteCount < 2 || deleteCount > 100)
         return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
       const fetched = await message.channel.fetchMessages({count: deleteCount});
+      log.channel.send(`${message.author} has purged ${deleteCount} messages in ${message.channel.name}`)
       message.channel.bulkDelete(fetched)
         .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
     }else if(command === "forcesave") {
