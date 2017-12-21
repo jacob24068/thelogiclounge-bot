@@ -210,7 +210,7 @@ client.on("message", async message => {
       let math = Meth.eval(message.content.substring(6))
       message.channel.send({
         "embed": {
-          "title": "The Logic Lounge Leaderboard",
+          "title": "­­­­",
           "color": 0xe19de1,
           "author": {
             "name": "The Logic Lounge Bot",
@@ -219,7 +219,7 @@ client.on("message", async message => {
           "fields": [
             {
               "name": `Question - ${message.content.substring(6)}`,
-              "value": `${math}`
+              "value": `Answer - ${math}`
             }
           ]
         }
