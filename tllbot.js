@@ -3,7 +3,7 @@ const client = new Discord.Client()
 const config = require("./config.json")
 const { Client } = require('pg');
 const ms = require('ms')
-const math = require('mathjs');
+const Meth = require('mathjs');
 
 const pgClient = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -207,7 +207,7 @@ client.on("message", async message => {
     saveData[member.id] = Number(time) 
 
     }else if (command === "math") {
-      let math = math.eval(message.content.substring(6))
+      let math = Meth.eval(message.content.substring(6))
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
