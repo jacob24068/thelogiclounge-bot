@@ -211,7 +211,7 @@ client.on("message", async message => {
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
-          "color": Math.floor(Math.random()*16777215).toString(16),
+          "color": 0xe19de1,
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -262,7 +262,7 @@ client.on("message", async message => {
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
-          "color": Math.floor(Math.random()*16777215).toString(16),
+          "color": 0xe19de1,
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -316,7 +316,7 @@ client.on("message", async message => {
       if(message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) ) { message.author.send({
         "embed": {
           "title": "The Logic Lounge Help",
-          "color": Math.floor(Math.random()*16777215).toString(16),
+          "color": 8449497,
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -343,7 +343,7 @@ client.on("message", async message => {
       })}else{message.author.send({
         "embed": {
           "title": "The Logic Lounge Help",
-          "color": Math.floor(Math.random()*16777215).toString(16),
+          "color": 8449497,
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
