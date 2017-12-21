@@ -336,7 +336,8 @@ client.on("message", async message => {
 !leaderboard <number> - Returns the user who is in the given place in chat.
 !leaderboard <mention> - Returns the mentioned user's place, and amount of points.
 !points - Returns your points
-!points <mention> - Returns given users points.`
+!points <mention> - Returns given users points.
+!math <equation> - Solves given math equation.`
             }
           ]
         }
@@ -355,7 +356,8 @@ client.on("message", async message => {
 !leaderboard <number> - Returns the user who is in the given place in chat.
 !leaderboard <mention> - Returns the mentioned user's place, and amount of points.
 !points - Returns your points
-!points <mention> - Returns given users points.`
+!points <mention> - Returns given users points.
+!math <equation> - Solves given math equation.`
             }
           ]
         }
