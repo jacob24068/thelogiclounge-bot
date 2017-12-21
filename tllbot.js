@@ -3,7 +3,7 @@ const client = new Discord.Client()
 const config = require("./config.json")
 const { Client } = require('pg');
 const ms = require('ms')
-
+const math = require('mathjs');
 
 const pgClient = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -206,6 +206,24 @@ client.on("message", async message => {
     if(!time) return message.reply("Please indicate a time for the mute!");    
     saveData[member.id] = Number(time) 
 
+    }else if (command === "math") {
+      let math = math.eval(message.content.substring(6))
+      message.channel.send({
+        "embed": {
+          "title": "The Logic Lounge Leaderboard",
+          "color": Math.floor(Math.random()*16777215).toString(16),
+          "author": {
+            "name": "The Logic Lounge Bot",
+            "icon_url": "https://i.imgur.com/R7TRyNo.png"
+          },
+          "fields": [
+            {
+              "name": `Question - ${message.content.substring(6)}`,
+              "value": `${math}`
+            }
+          ]
+        }
+      })
 
     }else if (command === "leaderboard") {
       const keys = Object.keys(saveData);
@@ -244,7 +262,7 @@ client.on("message", async message => {
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
-          "color": 0xe19de1,
+          "color": Math.floor(Math.random()*16777215).toString(16),
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -298,7 +316,7 @@ client.on("message", async message => {
       if(message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) ) { message.author.send({
         "embed": {
           "title": "The Logic Lounge Help",
-          "color": 8449497,
+          "color": Math.floor(Math.random()*16777215).toString(16),
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -325,7 +343,7 @@ client.on("message", async message => {
       })}else{message.author.send({
         "embed": {
           "title": "The Logic Lounge Help",
-          "color": 8449497,
+          "color": Math.floor(Math.random()*16777215).toString(16),
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
