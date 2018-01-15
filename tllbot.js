@@ -36,7 +36,6 @@ client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
     client.user.setPresence({ game: { name: '!help', type: 0 } });
     log = client.channels.get(`392027118055194636`)
-    console.log(log)
   });
 
 function sortByKey(jsObj){
@@ -92,6 +91,7 @@ client.on("message", async message => {
     }
 
     if (command === "verify" && message.channel.id == `391409706477813771`) {
+      log.send(`${message.author} has verified.`)
       message.reply(`Welcome to TLL! We hope you enjoy your stay.`)
       message.member.addRole(message.guild.roles.find("name", "Verified")).catch(console.error);
   }else if (message.channel.id == `391409706477813771`) return message.delete()
@@ -117,6 +117,7 @@ client.on("message", async message => {
       await member.kick(reason)
         .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
       message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
+      log.send(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`)
       // log.channel.send(`${message.author} has kicked ${member} for ${reason}`)
     }
 
@@ -133,6 +134,7 @@ client.on("message", async message => {
       member.addRole(muteRole.id)
      // log.channel.send(`${message.author} has muted ${member} for ${ms(ms(time), {long:true})}`)
       message.channel.send(`${member}, you have been muted for ${ms(ms(time), {long:true})}`)
+      log.send(`${member} muted by ${message.author} for ${ms(ms(time), {long:true})}`)
       setTimeout(function() {
         member.removeRole(muteRole.id)
         member.send(`You have been unmuted from The Logic Lounge.`)
@@ -151,7 +153,7 @@ client.on("message", async message => {
       
       member.removeRole(muteRole.id)
 
-      
+      log.send(`${member} unmuted by ${message.author}`)
     }
     
     else if (command === "points") {
@@ -178,6 +180,7 @@ client.on("message", async message => {
       await member.ban(reason)
         .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
       message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
+      log.send(`${member.user} has been banned by ${message.author} because: ${reason}`)
     }
     
     else if(command === "purge") {
