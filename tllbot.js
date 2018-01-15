@@ -134,7 +134,7 @@ client.on("message", async message => {
       member.addRole(muteRole.id)
      // log.channel.send(`${message.author} has muted ${member} for ${ms(ms(time), {long:true})}`)
       message.channel.send(`${member}, you have been muted for ${ms(ms(time), {long:true})}`)
-      log.send(`${member} muted by ${message.author} for ${ms(ms(time), {long:true})}`)
+      log.send(`${member} muted by ${message.author} for ${ms(ms(time), {long:true})} at ${Date()}`)
       setTimeout(function() {
         member.removeRole(muteRole.id)
         member.send(`You have been unmuted from The Logic Lounge.`)
