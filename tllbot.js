@@ -35,7 +35,8 @@ let log
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
     client.user.setPresence({ game: { name: '!help', type: 0 } });
-    //log = client.channels.get(`392027118055194636`)
+    log = client.channels.get(`392027118055194636`)
+    console.log(log)
   });
 
 function sortByKey(jsObj){
