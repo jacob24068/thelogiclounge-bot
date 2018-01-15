@@ -91,7 +91,7 @@ client.on("message", async message => {
     }
 
     if (command === "verify" && message.channel.id == `391409706477813771`) {
-      log.send(`${message.author} has verified.`)
+      log.send(`${message.author} has verified at ${Date()}`)
       message.reply(`Welcome to TLL! We hope you enjoy your stay.`)
       message.member.addRole(message.guild.roles.find("name", "Verified")).catch(console.error);
   }else if (message.channel.id == `391409706477813771`) return message.delete()
@@ -117,7 +117,7 @@ client.on("message", async message => {
       await member.kick(reason)
         .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
       message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
-      log.send(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`)
+      log.send(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason} at ${Date()}`)
       // log.channel.send(`${message.author} has kicked ${member} for ${reason}`)
     }
 
@@ -153,7 +153,7 @@ client.on("message", async message => {
       
       member.removeRole(muteRole.id)
 
-      log.send(`${member} unmuted by ${message.author}`)
+      log.send(`${member} unmuted by ${message.author} at ${Date()}`)
     }
     
     else if (command === "points") {
@@ -180,7 +180,7 @@ client.on("message", async message => {
       await member.ban(reason)
         .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
       message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
-      log.send(`${member.user} has been banned by ${message.author} because: ${reason}`)
+      log.send(`${member.user} has been banned by ${message.author} because: ${reason} at ${Date()}`)
     }
     
     else if(command === "purge") {
