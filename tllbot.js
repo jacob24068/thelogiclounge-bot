@@ -218,7 +218,7 @@ client.on("message", async message => {
     } else if (command === "parsemath") {
         let newstring = message.content.substr(11)
         mathparsestuff.forEach(function(Item) {
-            newstring.replace(Item[0], Item[1])
+            newstring = newstring.replace(Item[0], Item[1])
             console.log(Item[0])
             console.log(Item[1])
             console.log("--")
