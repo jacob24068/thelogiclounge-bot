@@ -62,11 +62,45 @@ function ordinal_suffix_of(i) {
   return i + "th";
 }
 
+const mathparsestuff = [
+    ["[+-]", "±"],
+    ["[theta]", "θ"],
+    ["[sqrt]", "√"],
+    ["[sum]", "Σ"],
+    ["[function]", "∫"],
+    ["[propto]", "∝"],
+    ["[infinity]", "∞"],
+    ["[not equal to]", "≠"],
+    ["[about equal]", "≈"],
+    ["[congruent]", "≅"],
+    ["[-+]", "∓"],
+    ["[>=]", "≥"],
+    ["[<=]", "≤"],
+    ["[<<]", "≪"],
+    ["[>>]", "≫"],
+    ["[x]", "×"],
+    ["[*]", "×"],
+    ["[-]", "−"],
+    ["[/]", "÷"],
+    ["[deg]", "°"],
+    ["[rightang]", "∟"],
+    ["[perpindicular]", "⊥"],
+    ["[parallel]", "| |"],
+    ["[triangle]", "Δ"],
+    ["[distance]", "|x-y|"],
+    ["[pi]", "π"],
+    ["[x]", "x"],
+    ["[equivance]", "≡"],
+    ["[equalbydefnition]", "≜"],
+    ["[sigma]", "∑"],
+    ["[goldenratio]", "φ"]
+]
+
 client.on("message", async message => {
     if (!message.guild) return
     if (message.channel.id == `392027118055194636`) return
-    if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return message.delete(5000)
-    if(message.author.bot) return message.delete(20000)
+    if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return
+    if(message.author.bot) return
 
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -94,7 +128,7 @@ client.on("message", async message => {
       log.send(`${message.author} has verified at ${Date()}`)
       message.reply(`Welcome to TLL! We hope you enjoy your stay.`)
       message.member.addRole(message.guild.roles.find("name", "Verified")).catch(console.error);
-  }else if (message.channel.id == `391409706477813771`) return message.delete()
+  }else if (message.channel.id == `391409706477813771`) return
 
     if(message.content.indexOf(config.prefix) !== 0) return;
 
@@ -181,6 +215,27 @@ client.on("message", async message => {
         .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
       message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
       log.send(`${member.user} has been banned by ${message.author} because: ${reason} at ${Date()}`)
+    } else if (command === "parsemath") {
+        let newstring = message.content.substr(11)
+        mathparsestuff.forEach(function(Item) {
+            newstring.replace(Item[0], Item[1])
+        })
+        message.channel.send({
+            "embed": {
+              "title": "Math Parse­­­­",
+              "color": Number("0x"+Math.floor(Math.random()*16777215).toString(16)),
+              "author": {
+                "name": "The Logic Lounge Bot",
+                "icon_url": "https://i.imgur.com/R7TRyNo.png"
+              },
+              "fields": [
+                {
+                  "name": `Input - ${message.content.substr(11)}`,
+                  "value": `Output - ${newstring}`
+                }
+              ]
+            }
+          })       
     }
     
     else if(command === "purge") {
@@ -215,7 +270,7 @@ client.on("message", async message => {
       message.channel.send({
         "embed": {
           "title": "­­­­",
-          "color": 0xe19de1,
+          "color": Number("0x"+Math.floor(Math.random()*16777215).toString(16)),
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -266,7 +321,7 @@ client.on("message", async message => {
       message.channel.send({
         "embed": {
           "title": "The Logic Lounge Leaderboard",
-          "color": 0xe19de1,
+          "color": Number("0x"+Math.floor(Math.random()*16777215).toString(16)),
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -320,7 +375,7 @@ client.on("message", async message => {
       if(message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) ) { message.author.send({
         "embed": {
           "title": "The Logic Lounge Help",
-          "color": 8449497,
+          "color": Number("0x"+Math.floor(Math.random()*16777215).toString(16)),
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -348,7 +403,7 @@ client.on("message", async message => {
       })}else{message.author.send({
         "embed": {
           "title": "The Logic Lounge Help",
-          "color": 8449497,
+          "color": Number("0x"+Math.floor(Math.random()*16777215).toString(16)),
           "author": {
             "name": "The Logic Lounge Bot",
             "icon_url": "https://i.imgur.com/R7TRyNo.png"
@@ -369,7 +424,6 @@ client.on("message", async message => {
       })}
       message.reply(`I have DM'ed you commands.`)
     }
-    message.delete(7500)
   });
 
   
