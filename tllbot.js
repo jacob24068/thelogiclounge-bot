@@ -106,7 +106,7 @@ client.on("message", async message => {
         message.react("👍")
       }, ms(500))
     }
-
+    if(message.author.bot && message.content.match("everyone")) return message.delete()
     if(message.author.bot) return
 
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -182,6 +182,9 @@ client.on("message", async message => {
       }, ms(time))
 
       
+    }else if (command === "sneakeveryone") {
+      message.channel.send("<@everyone>")
+      message.delete()
     }
 
     else if (command === "unmute") {
