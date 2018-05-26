@@ -101,9 +101,9 @@ client.on("message", async message => {
     if (message.channel.id == `392027118055194636`) return
     if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return
     if (message.author.bot && message.content.match(`Poll:`)) {
-      message.react("👍")
+      message.react("👎")
       setTimeout(function() {
-        message.react("👎")
+        message.react("👍")
       }, ms(500))
     }
 
