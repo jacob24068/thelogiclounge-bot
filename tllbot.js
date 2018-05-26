@@ -183,6 +183,8 @@ client.on("message", async message => {
 
       
     }else if (command === "sneakeveryone") {
+      if(!message.member.roles.some(r=>["Administrator", "Moderator"].includes(r.name)) )
+        return message.reply("Sorry, you don't have permissions to use this!");
       message.channel.send("<@everyone>")
       message.delete()
     }
