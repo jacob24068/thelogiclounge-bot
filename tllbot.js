@@ -102,7 +102,9 @@ client.on("message", async message => {
     if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return
     if (message.author.bot && message.content.match(`Poll:`)) {
       message.react("👍")
-      message.react("👎")
+      setTimeout(function() {
+        message.react("👎")
+      }, ms(500))
     }
 
     if(message.author.bot) return
