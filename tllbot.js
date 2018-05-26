@@ -100,6 +100,11 @@ client.on("message", async message => {
     if (!message.guild) return
     if (message.channel.id == `392027118055194636`) return
     if(message.author.bot && message.content.match(`Welcome to TLL! We hope you enjoy your stay.`)) return
+    if (message.author.bot && message.content.match(`Poll:`)) {
+      message.react("👍")
+      message.react("👎")
+    }
+
     if(message.author.bot) return
 
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -239,6 +244,10 @@ client.on("message", async message => {
               ]
             }
           })       
+    }else if (command === "poll") {
+      const poll = message.content.substr(6)
+      message.delete()
+      message.channel.send("Poll: " + poll)
     }
     
     else if(command === "purge") {
